@@ -1,16 +1,19 @@
 label {
     display: block;
     margin-bottom: 2px;
+    color: rgb(255, 247, 227);
 }
-
-.dialoog_label {
-    display: block;
-    margin-bottom: 5px;
-}
-
 
 textarea {
     resize: none;
+    background-color: rgb(220, 220, 220);
+}
+
+.dialoog_logo {
+    position: relative;
+    display: flex; 
+    justify-content: right;
+    align-items: flex-start;
 }
 
 .dialoog_div {
@@ -28,6 +31,7 @@ textarea {
     align-items: flex-start;
     gap: 10px;
     padding: 10px;
+    background-color: rgb(103, 42, 42);
 }
 
 .laatste_3divs {
@@ -36,4 +40,6 @@ textarea {
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
+    background-color: rgb(103, 42, 42);
+    padding-bottom: 24px;
 }
