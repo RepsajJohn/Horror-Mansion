@@ -1,0 +1,39 @@
+label {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.dialoog_label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+textarea {
+    resize: none;
+}
+
+.dialoog_div {
+    position: relative;
+    display: flex; 
+    justify-content: right;
+    align-items: flex-start;
+}
+
+
+.eerste_3divs {
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+}
+
+.laatste_3divs {
+     display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
