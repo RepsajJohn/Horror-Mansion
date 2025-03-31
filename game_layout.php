@@ -9,7 +9,13 @@
 </head>
 
 <body>
-
+<?php 
+        require_once __DIR__ . '/../Horror-Mansion/PHP_files/functions.php';
+        require_once __DIR__ . '/../Horror-Mansion/kamers/index.php';
+        require_once __DIR__ . '/../Horror-Mansion/kamers/verplaatsing/index.php';
+        require_once __DIR__ . '/../Horror-Mansion/kamers/views/kamers.view.php';
+          ?>
+<h3><?=$kamer['kamer_naam']?></h3>
 <div class="dialoog_logo">
     <textarea id="dialoog" name="dialoog" rows="1" cols="100">Dialoog</textarea>
 </div>
