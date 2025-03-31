@@ -1,25 +1,45 @@
-.link-box {
-    border: 2px solid #ccc; /* Een grijze rand */
+label {
+    display: block;
+    margin-bottom: 2px;
+    color: rgb(255, 247, 227);
+}
+
+textarea {
+    resize: none;
+    background-color: rgb(220, 220, 220);
+}
+
+.dialoog_bovenbalk {
+    position: relative;
+    display: flex; 
+    justify-content: right;
+    align-items: flex-start;
+}
+
+.dialoog_div {
+    position: relative;
+    display: flex; 
+    justify-content: right;
+    align-items: flex-start;
+}
+
+
+.eerste_3divs {
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
     padding: 10px;
-    width: 300px;
-    height: 100px;
-    background-color: #f9f9f9; /* Lichte achtergrondkleur */
-    justify-items: center;
-    padding-top: 10px;
+    background-color: rgb(103, 42, 42);
 }
 
-.link-box a {
-    color: #007BFF; /* Blauwe kleur voor links */
-    text-decoration: none; /* Verwijdert onderstreping */
-    align-content: center;
-    padding: 5px;
-}
-
-.link-box a:hover {
-    text-decoration: underline; /* Onderstreping bij hover */
-}
-
-.link-box a:nth-child(4),
-.link-box a:nth-child(5) {
-    grid-column: span 2; /* Laat de laatste twee links breder worden en op de onderste rij staan */
+.laatste_3divs {
+     display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    background-color: rgb(103, 42, 42);
+    padding-bottom: 24px;
 }
