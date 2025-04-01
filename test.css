@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    min-height: 100vh
 }
 
 label {
@@ -8,6 +9,16 @@ label {
     margin-bottom: 2px;
     color: rgb(0, 0, 0);
     text-align: center;
+}
+
+.rugzak {
+    background-color: white;
+    height: 100px;
+    width: 800px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+
 }
 
 textarea {
@@ -32,8 +43,12 @@ textarea {
     text-align: center;
 }
 
+.container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 
-
+}
 
 .eerste_3divs {
     display: flex;
