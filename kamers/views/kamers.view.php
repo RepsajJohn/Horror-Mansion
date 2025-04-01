@@ -1,4 +1,4 @@
-<h3><?=$kamer['kamer_naam']?></h3>
+<h3><?= $kamer['kamer_naam'] ?></h3>
 
 <?php if ($_SESSION["current_location"] == 1): ?>
     <a href="verplaatsing?kamer=2">Ga naar kamer 2</a>
