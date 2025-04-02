@@ -14,5 +14,5 @@ $kamer = $statement->fetch(PDO::FETCH_ASSOC);
 
 
 
-require_once __DIR__ . '/views/kamers.view.php';
+require_once __DIR__ . '/../game_layout.php';
 

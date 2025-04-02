@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> contact page</title>
-    <link rel="stylesheet" href="game_layout.css">
+    <title>Layouts</title>
+    <link rel="stylesheet" href="../game_layout.css">
 </head>
 
 <body>
@@ -21,7 +21,9 @@
 <div class="eerste_3divs">
     <div class="navigatie_div">
         <label for="navigatie">Navigatie</label>
-        <textarea id="navigatie" name="navigatie" rows="5" cols="80"><?php require_once __DIR__ . '/../Horror-Mansion/kamers/index.php'; ?></textarea>
+        <div id="navigatie" name="navigatie">
+            <?php require_once __DIR__ . "/kamers/views/kamers.view.php" ?>
+        </div>
     </div>
 
     <div class="hand_div">
