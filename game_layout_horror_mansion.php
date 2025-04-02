@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>game_layout</title>
-    <link rel="stylesheet" href="game_layout_horror_mansion.css">
+    <link rel="stylesheet" href="../game_layout_horror_mansion.css">
 </head>
 
 <body>
@@ -58,7 +58,7 @@
         <div class="eerste_3divs">
             <div class="navigatie_div">
                 <label for="navigatie">Navigatie</label>
-                <div><?php require_once __DIR__ . '/../Horror-Mansion/kamers/index.php'; ?>
+                <div><?php require_once __DIR__ . "/kamers/views/kamers.view.php"; ?>
 
 
                 </div>
