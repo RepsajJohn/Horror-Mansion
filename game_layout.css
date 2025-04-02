@@ -9,7 +9,7 @@ textarea {
     background-color: rgb(220, 220, 220);
 }
 
-.dialoog_logo {
+.dialoog_bovenbalk {
     position: relative;
     display: flex;
     justify-content: right;
