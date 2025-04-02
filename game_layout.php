@@ -15,14 +15,13 @@
 </div>
 
 <div class="dialoog_div">
-<textarea id="dialoog" name="dialoog" rows="29" cols="100"></textarea>
+    <textarea id="dialoog" name="dialoog" rows="29" cols="100"></textarea>
 </div>
-
 
 <div class="eerste_3divs">
     <div class="navigatie_div">
         <label for="navigatie">Navigatie</label>
-        <textarea id="navigatie" name="navigatie" rows="5" cols="80"></textarea>
+        <textarea id="navigatie" name="navigatie" rows="5" cols="80"><?php require_once __DIR__ . '/../Horror-Mansion/kamers/index.php'; ?></textarea>
     </div>
 
     <div class="hand_div">
