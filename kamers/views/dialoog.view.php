@@ -1,0 +1,1 @@
+<p><?= $dialoog['dialoog_nummer'] ?></p>

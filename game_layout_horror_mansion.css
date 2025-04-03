@@ -108,6 +108,14 @@ textarea {
     padding: 10px;
     margin: 10px;
     border-radius: 3px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.acties_div::-webkit-scrollbar {
+    width: 10px;
+    height: 5px;
+
 }
 
 .item_div {

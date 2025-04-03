@@ -16,3 +16,11 @@ $kamer = $statement->fetch(PDO::FETCH_ASSOC);
 
 require_once __DIR__ . '/../game_layout_horror_mansion.php';
 
+$sql = "SELECT * FROM dialoog WHERE dialoog_nummer = :current_dialoog";
+$statement = $conn->prepare($sql);
+$statement->execute(['current_dialoog' => $_SESSION['current_dialoog']]);
+$kamer = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+
+require_once __DIR__ . '/../game_layout_horror_mansion.php';

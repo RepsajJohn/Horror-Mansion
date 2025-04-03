@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+
+
+
+
+
+
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -26,31 +34,14 @@
 
     </div>
     </div>
-    <style>
-        .inline {
-            display: flex;
 
-        }
-
-        .test {
-            width: 50%;
-            background-color: white;
-            height: 500px;
-
-        }
-
-        .test2 {
-            width: 50%;
-            background-color: rgb(103, 42, 42);
-
-            height: 500px;
-        }
-    </style>
     <div class="dialoog_bovenbalk">
         <textarea id="dialoog" name="dialoog" rows="1" cols="100">Dialoog</textarea>
     </div>
     <div class="dialoog_div">
-        <textarea id="dialoog" name="dialoog" rows="26" cols="100"></textarea>
+        <textarea id="dialoog" name="dialoog" rows="26" cols="100"><?php require_once __DIR__ . "/kamers/views/dialoog.view.php"; ?>
+        </textarea>
+
     </div>
 
     <div class=" container">
@@ -58,7 +49,18 @@
         <div class="eerste_3divs">
             <div class="navigatie_div">
                 <label for="navigatie">Navigatie</label>
-                <div><?php require_once __DIR__ . "/kamers/views/kamers.view.php"; ?>
+                <div>
+
+
+                    <?php require_once __DIR__ . "/kamers/views/kamers.view.php"; ?>
+
+
+
+                    <div>
+
+                    </div>
+
+
 
 
                 </div>
@@ -81,7 +83,9 @@
         <div class="laatste_3divs">
             <div class="acties_div">
                 <label for="acties">Acties</label>
-                <div id="acties"><?php echo "<a href='{$databaseLinks["acties"]}'>{$databaseLinks["acties"]}</a>"; ?></div>
+                <div id="acties"><?php echo "<a href=''</a>"; ?><?php
+
+                                                                echo acties(); ?></div>
             </div>
 
             <div class="item_div">
