@@ -39,7 +39,11 @@
         <textarea id="dialoog" name="dialoog" rows="1" cols="100">Dialoog</textarea>
     </div>
     <div class="dialoog_div">
-        <textarea id="dialoog" name="dialoog" rows="26" cols="100"><?php require_once __DIR__ . "/kamers/views/dialoog.view.php"; ?>
+        <textarea id="dialoog" name="dialoog" rows="26" cols="100">
+            <?php require_once __DIR__ . "/kamers/views/dialoog.view.php";
+
+            ?>
+            
         </textarea>
 
     </div>
