@@ -88,9 +88,11 @@
                                                                 echo acties(); ?></div>
             </div>
 
-            <div class="item_div">
-                <label for="item">Items</label>
-                <div id="item"><?php echo "<a href='{$databaseLinks["item"]}'>{$databaseLinks["item"]}</a>"; ?></div>
+            <div class="item_div scrollable">
+                <div id="item">Items</div>
+                <?php foreach ($items as $item) {
+                    include __DIR__ . '/kamers/views/items.view.php';
+                } ?>
             </div>
 
             <div class="npcs_div">

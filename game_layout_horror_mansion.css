@@ -135,3 +135,15 @@ textarea {
     margin: 10px;
     border-radius: 3px;
 }
+
+.scrollable {
+    overflow-y: auto; /* Add vertical scrolling */
+    border: 1px solid #ccc; /* Optional: Adds a border for better visibility */
+    padding: 10px; /* Optional: Adds some padding inside the div */
+}
+
+.item {
+    background-color: #cdcdcd;
+    padding: 0.5rem;
+    margin: 1rem 0rem
+}
