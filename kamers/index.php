@@ -19,10 +19,18 @@ $stmt = $conn->prepare($items_sql);
 $stmt->execute(['current_location' => $_SESSION['current_location']]);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-require_once __DIR__ . '/../game_layout_horror_mansion.php';
 
 
-$sql = "SELECT beschrijving FROM dialoog WHERE dialoog_nummer = :current_location";
-$statement = $conn->prepare($sql);
+$dialoog_sql = "SELECT beschrijving FROM dialoog WHERE dialoog_nummer = :current_location";
+$statement = $conn->prepare($dialoog_sql);
 $statement->execute(['current_location' => $_SESSION['current_location']]);
 $dialoog = $statement->fetch(PDO::FETCH_ASSOC);
+
+$npc_sql = "SELECT npc_naam FROM npc WHERE npc_id = :current_location";
+$statement = $conn->prepare($npc_sql);
+$statement->execute(['current_location' => $_SESSION['current_location']]);
+$npc = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+
+require_once __DIR__ . '/../game_layout_horror_mansion.php';

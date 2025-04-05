@@ -1,1 +1,1 @@
-<p><?= $kamer['beschrijving'] ?></p>
+<p><?= $dialoog["beschrijving"] ?></p>

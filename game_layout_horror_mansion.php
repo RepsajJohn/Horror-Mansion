@@ -39,12 +39,22 @@
         <textarea id="dialoog" name="dialoog" rows="1" cols="100">Dialoog</textarea>
     </div>
     <div class="dialoog_div">
-        <textarea id="dialoog" name="dialoog" rows="26" cols="100">
-            <?php require_once __DIR__ . "/kamers/views/dialoog.view.php";
+        <div class="dialoog_div_2">
+            <?php require_once __DIR__ . "/kamers/views/dialoog.view.php"; ?>
+        </div>
+        <style>
+            .dialoog_div_2 {
+                height: 350px;
+                width: 50%;
+                background-color: rgb(220, 220, 220);
+                border: 1px solid black;
+            }
+        </style>
 
-            ?>
-            
-        </textarea>
+
+
+
+
 
     </div>
 
@@ -57,6 +67,7 @@
 
 
                     <?php require_once __DIR__ . "/kamers/views/kamers.view.php"; ?>
+
 
 
 
@@ -101,7 +112,7 @@
 
             <div class="npcs_div">
                 <label for="npcs">NPC's</label>
-                <div id="npcs"><?php echo "<a href='{$databaseLinks["npcs"]}'>{$databaseLinks["npcs"]}</a>"; ?></div>
+                <div id="npcs"><?php include_once __DIR__ . '/kamers/views/npc.view.php' ?></div>
             </div>
         </div>
     </div>
