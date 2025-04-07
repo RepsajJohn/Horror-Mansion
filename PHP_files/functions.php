@@ -17,16 +17,36 @@ try {
 ?>
 
 <?php
+
+
+
 function acties()
 {
-    if ($_SESSION["current_location"])
-        echo '<a href="">kijk naar </a>  <br>';
-    echo '<a href="">combineer ..... met ..... </a>  <br>';
-    echo '<a href="">neem mee</a>  <br>';
-    echo '<a href="">gebruik</a>  <br>';
-    echo '<a href="">praat met</a> <br>';
+
+
+    $kijknaar = '<a href="?link=kijk_naar">kijk naar</a><br>';
+    echo $kijknaar;
+
+    $combineer = '<a href="?link=combineer">combineer ..... met .....</a><br>';
+    echo $combineer;
+
+    $neem_mee = '<a href="?link=neem_mee">neem mee</a><br>';
+    echo $neem_mee;
+
+    $gebruik = '<a href="?link=gebruik">gebruik</a><br>';
+    echo $gebruik;
+
+    $praat_met = '<a href="?link=praat_met">praat met</a><br>';
+    echo $praat_met;
 }
 ?>
+
+
+
+
+
+
+
 <?php
 function dialoog()
 {

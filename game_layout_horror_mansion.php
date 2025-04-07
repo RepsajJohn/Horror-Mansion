@@ -40,7 +40,14 @@
     </div>
     <div class="dialoog_div">
         <div class="dialoog_div_2">
-            <?php require_once __DIR__ . "/kamers/views/dialoog.view.php"; ?>
+            <?php require_once __DIR__ . "/kamers/views/dialoog.view.php";
+
+
+
+            ?>
+        </div>
+        <div class="test">
+
         </div>
         <style>
             .dialoog_div_2 {
@@ -99,8 +106,10 @@
             <div class="acties_div">
                 <label for="acties">Acties</label>
                 <div id="acties"><?php echo "<a href=''</a>"; ?><?php
+                                                                echo acties();
 
-                                                                echo acties(); ?></div>
+                                                                ?></div>
+
             </div>
 
             <div class="item_div scrollable">

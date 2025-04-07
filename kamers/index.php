@@ -21,6 +21,7 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
+
 $dialoog_sql = "SELECT beschrijving FROM dialoog WHERE dialoog_nummer = :current_location";
 $statement = $conn->prepare($dialoog_sql);
 $statement->execute(['current_location' => $_SESSION['current_location']]);
@@ -30,6 +31,7 @@ $npc_sql = "SELECT npc_naam FROM npc WHERE npc_id = :current_location";
 $statement = $conn->prepare($npc_sql);
 $statement->execute(['current_location' => $_SESSION['current_location']]);
 $npc = $statement->fetch(PDO::FETCH_ASSOC);
+
 
 
 

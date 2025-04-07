@@ -1,1 +1,1 @@
-<p><?= $npc["npc_naam"] ?></p>
+<a href=""><?= $npc["npc_naam"] ?></a>
