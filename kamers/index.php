@@ -14,10 +14,12 @@ $statement->execute(['current_location' => $_SESSION['current_location']]);
 $kamer = $statement->fetch(PDO::FETCH_ASSOC);
 
 
-$items_sql = "SELECT item_beschrijving FROM item WHERE item_nummer = :current_location";
+$items_sql = "SELECT item_id, item_beschrijving FROM item WHERE item_nummer = :current_location";
 $stmt = $conn->prepare($items_sql);
 $stmt->execute(['current_location' => $_SESSION['current_location']]);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 
 
