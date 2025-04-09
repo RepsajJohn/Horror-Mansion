@@ -144,3 +144,10 @@ textarea {
     padding: 10px;
     /* Optional: Adds some padding inside the div */
 }
+
+.dialoog_div_2 {
+    height: 350px;
+    width: 50%;
+    background-color: rgb(220, 220, 220);
+    border: 1px solid black;
+}
