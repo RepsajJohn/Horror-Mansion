@@ -34,6 +34,11 @@ $statement = $conn->prepare($npc_sql);
 $statement->execute(['current_location' => $_SESSION['current_location']]);
 $npc = $statement->fetch(PDO::FETCH_ASSOC);
 
+$keuze_sql = "SELECT eerste_keuze FROM keuze WHERE keuze_id = :current_location";
+$stmt = $conn->prepare($keuze_sql);
+$stmt->execute(['current_location' => $_SESSION['current_location']]);
+$keuze = $statement->fetch(PDO::FETCH_ASSOC);
+
 
 
 

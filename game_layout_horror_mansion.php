@@ -9,6 +9,21 @@
 </head>
 
 <body>
+    <?php
+    // Simulatie van links uit een database
+    $databaseLinks = [
+        "dialoog" => "https://example.com/dialoog1",
+        "navigatie" => "https://example.com/nav1",
+        "hand" => "https://example.com/hand1",
+        "rugzak" => "https://example.com/rugzak1",
+        "acties" => "https://example.com/actie1",
+        "item" => "https://example.com/item1",
+        "npcs" => "https://example.com/npc1",
+        "keuze" => "https://example.com/keuze"
+    ];
+    ?>
+    </div>
+    </div>
     <div class="dialoog_bovenbalk">
         <textarea id="dialoog" name="dialoog" rows="1" cols="100">Dialoog</textarea>
     </div>
@@ -53,6 +68,32 @@
             }
             ?>
         </div>
+        <div class="test">
+
+        </div>
+        <style>
+            .dialoog_div_2 {
+                height: 260px;
+                width: 50%;
+                background-color: rgb(220, 220, 220);
+                border: 1px solid black;
+            }
+        </style>
+    </div>
+    <div class="move_keuze_div">
+        <div class="keuze_div">
+            <label for="keuze">Keuze</label>
+            <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
+            </div>
+            <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
+            </div>
+            <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
+            </div>
+            <div id="keuze"><?php include_once __DIR__ . "/kamers/views/keuze.view.php" ?></div>
+        </div>
+    </div>
+
+    <div class=" container">
     </div>
 
     <div class="eerste_3divs">
@@ -63,6 +104,11 @@
             </div>
         </div>
 
+        <div class="hand_div">
+            <label for="hand">Hand</label>
+            <div id="hand"><?php echo "<a href='{$databaseLinks["hand"]}'>{$databaseLinks["hand"]}</a>"; ?>
+            </div>
+        </div>
         <div class="hand_div">
             <label for="hand">Hand</label>
             <div id="hand"></div>
