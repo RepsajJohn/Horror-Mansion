@@ -136,6 +136,24 @@ textarea {
     border-radius: 3px;
 }
 
+.keuze_div {
+    background-color: rgb(255, 255, 255);
+    height: 20px;
+    width: 500px;
+    text-align: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    
+}
+
+.move_keuze_div {
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+}
+
 .scrollable {
     overflow-y: auto;
     /* Add vertical scrolling */
