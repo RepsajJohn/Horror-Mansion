@@ -15,25 +15,39 @@
 
     <div class="dialoog_div">
         <div class="dialoog_div_2">
-            <?php require_once __DIR__ . "/kamers/views/dialoog.view.php";
-            if (isset($_GET['action']) && isset($_GET['item_id'])) {
-                $action = $_GET['action'];
-                $item_id = $_GET['item_id'];
+            <?php
+            include_once __DIR__ . '/kamers/views/dialoog.view.php';
 
-                $_SESSION["action_$action"] = true;
-                $_SESSION["item_$item_id"] = true;
+
+            if (isset($_GET['action']) && isset($_GET['selected_item_id'])) {
+
+                $_SESSION['selected_action'] = $_GET['action'];
+                $_SESSION['selected_item_id'] = $_GET['selected_item_id'];
+            }
+
+
+            $selected_action = $_SESSION['selected_action'] ?? null;
+            $selected_item_id = $_SESSION['selected_item_id'] ?? null;
+
+
+
+            if ($selected_action && $selected_item_id) {
+                $action = $selected_action;
+
 
                 foreach ($items as $item) {
-                    if ($item['item_id'] == $item_id) {
+                    if ($item['item_id'] == $selected_item_id) {
+                        echo "<div>";
                         if ($action === 'kijk_naar') {
-                            echo  "Je kijkt naar: " . $item['item_beschrijving'] . "<br>";
+                            echo "Je kijkt naar: " . $item['item_beschrijving'] . "<br>";
                         } elseif ($action === 'combineer') {
-                            echo "Je combineert: " . $item['item_beschrijving'] . " met een ander item.<br>";
+                            echo "Je combineert: " . $item['item_beschrijving'] . " met " . $item['item_beschrijving'] . "<br>";
                         } elseif ($action === 'neem_mee') {
-                            echo "Je hebt: " . $item['item_beschrijving'] . " meegenomen.<br>";
+                            echo "Je hebt: " . $item['item_beschrijving'] . " meegenomen<br>";
                         } elseif ($action === 'gebruik') {
-                            echo "Je gebruikt: " . $item['item_beschrijving'] . ".<br>";
+                            echo "Je gebruikt: " . $item['item_beschrijving'] . "<br>";
                         }
+                        echo "</div>";
                     }
                 }
             }
@@ -51,33 +65,42 @@
 
         <div class="hand_div">
             <label for="hand">Hand</label>
-            <div id="hand">
-            </div>
+            <div id="hand"></div>
         </div>
 
         <div class="rugzak_div">
             <label for="rugzak">Rugzak</label>
             <div id="rugzak"></div>
         </div>
-
     </div>
 
     <div class="laatste_3divs">
         <div class="acties_div">
             <label for="acties">Acties</label>
-            <div id="acties"><?php
-                                echo acties();
-                                ?>
+            <div id="acties">
+
+                <?php
+
+                $acties = ["kijk_naar", "combineer", "neem_mee", "gebruik", "praat_met"];
+                foreach ($acties as $actie) {
+
+                    echo "<a href='?action=$actie&selected_item_id=" . ($selected_item_id ?? '') . "'>" . ucfirst($actie) . "</a><br> ";
+                }
+                ?>
+
             </div>
         </div>
-
         <div class="item_div scrollable">
             <div id="item">Items</div>
-            <?php foreach ($items as $item) { ?>
-                <div class="item">
-                    <a href="?action=kijk_naar&item_id=<?= $item['item_id'] ?>"><?= $item['item_beschrijving'] ?></a>
-                </div>
-            <?php } ?>
+            <?php
+
+            foreach ($items as $item) {
+                echo "<div class='item'>";
+
+                echo "<a href='?selected_item_id=" . $item['item_id'] . "&action=" . ($selected_action ?? '') . "'>" . $item['item_beschrijving'] . "</a>";
+                echo "</div>";
+            }
+            ?>
         </div>
 
         <div class="npcs_div">
