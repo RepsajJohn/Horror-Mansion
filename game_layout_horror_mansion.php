@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>game_layout</title>
+    <title>horror_mansion</title>
     <link rel="stylesheet" href="../game_layout_horror_mansion.css">
 </head>
 
 <body>
     <div class="dialoog_bovenbalk">
-        <textarea id="dialoog" name="dialoog" rows="1" cols="100">Dialoog</textarea>
+
     </div>
 
     <div class="dialoog_div">
