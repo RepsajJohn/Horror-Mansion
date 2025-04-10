@@ -1,0 +1,1 @@
+<a href=""><?= $npc["npc_naam"] ?></a>
