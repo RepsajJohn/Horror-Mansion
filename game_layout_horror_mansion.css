@@ -108,6 +108,7 @@ a {
     padding: 10px;
     margin: 10px;
     border-radius: 3px;
+    overflow-y: auto;
 }
 
 .acties_div {
@@ -161,4 +162,7 @@ a {
     border-radius: 3px;
     text-align: left;
     padding: 10px;
+    overflow-y: auto;
+    line-height: 1.8;
+
 }

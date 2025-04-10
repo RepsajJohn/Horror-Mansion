@@ -10,48 +10,66 @@
 
 <body>
     <div class="dialoog_bovenbalk">
-
     </div>
 
     <div class="dialoog_div">
         <div class="dialoog_div_2">
+            <label for="dialoog_div_2">Dialoog</label>
             <?php
             include_once __DIR__ . '/kamers/views/dialoog.view.php';
 
+            // Start de sessie om gegevens op te slaan
 
+
+            // Sla de huidige actie en item-ID op in de sessie als ze zijn ingesteld
             if (isset($_GET['action']) && isset($_GET['selected_item_id'])) {
-
-                $_SESSION['selected_action'] = $_GET['action'];
-                $_SESSION['selected_item_id'] = $_GET['selected_item_id'];
+                $_SESSION['actions'][] = [
+                    'action' => $_GET['action'],
+                    'item_id' => $_GET['selected_item_id']
+                ];
             }
 
+            // Toon acties vanuit de sessie
+            if (!empty($_SESSION['actions'])) {
+                foreach ($_SESSION['actions'] as $saved_action) {
+                    $action = $saved_action['action'];
+                    $selected_item_id = $saved_action['item_id'];
 
-            $selected_action = $_SESSION['selected_action'] ?? null;
-            $selected_item_id = $_SESSION['selected_item_id'] ?? null;
+                    foreach ($items as $item) {
+                        if ($item['item_id'] == $selected_item_id) {
+                            echo "<div>";
+                            if ($action === 'kijk_naar') {
+                                echo "Je kijkt naar: " . $item['item_beschrijving'] . "<br>";
+                            } elseif ($action === 'combineer') {
 
+                                $other_item = null;
+                                do {
+                                    $other_item = $items[array_rand($items)];
+                                } while ($other_item['item_id'] == $item['item_id']);
+                                echo "Je combineert: " . $item['item_beschrijving'] . " met " . $other_item['item_beschrijving'] . "<br>";
+                            } elseif ($action === 'neem_mee') {
+                                // Zorg ervoor dat het item wordt meegenomen en verwijderd uit de lijst
+                                echo "Je hebt: " . $item['item_beschrijving'] . " meegenomen<br>";
 
+                                // Voeg het item toe aan de rugzak
+                                $_SESSION['rugzak'][] = $item;
 
-            if ($selected_action && $selected_item_id) {
-                $action = $selected_action;
-
-
-                foreach ($items as $item) {
-                    if ($item['item_id'] == $selected_item_id) {
-                        echo "<div>";
-                        if ($action === 'kijk_naar') {
-                            echo "Je kijkt naar: " . $item['item_beschrijving'] . "<br>";
-                        } elseif ($action === 'combineer') {
-                            echo "Je combineert: " . $item['item_beschrijving'] . " met " . $item['item_beschrijving'] . "<br>";
-                        } elseif ($action === 'neem_mee') {
-                            echo "Je hebt: " . $item['item_beschrijving'] . " meegenomen<br>";
-                        } elseif ($action === 'gebruik') {
-                            echo "Je gebruikt: " . $item['item_beschrijving'] . "<br>";
+                                // Verwijder het item uit de lijst van items
+                                $key = array_search($item['item_id'], array_column($items, 'item_id'));
+                                if ($key !== false) {
+                                    unset($items[$key]);
+                                }
+                            } elseif ($action === 'gebruik') {
+                                echo "Je gebruikt: " . $item['item_beschrijving'] . "<br>";
+                            }
+                            echo "</div>";
                         }
-                        echo "</div>";
                     }
                 }
             }
             ?>
+        </div>
+        <div>
         </div>
     </div>
 
@@ -70,7 +88,20 @@
 
         <div class="rugzak_div">
             <label for="rugzak">Rugzak</label>
-            <div id="rugzak"></div>
+            <div id="rugzak">
+                <?php
+                // Toon de inhoud van de rugzak
+                echo "<div id='rugzak'>";
+                if (!empty($_SESSION['rugzak'])) {
+                    foreach ($_SESSION['rugzak'] as $rugzakItem) {
+                        echo "<p>" . htmlspecialchars($rugzakItem['item_beschrijving']) . "</p>";
+                    }
+                } else {
+                    echo "<p>De rugzak is leeg.</p>";
+                }
+                echo "</div>";
+                ?>
+            </div>
         </div>
     </div>
 
@@ -78,37 +109,43 @@
         <div class="acties_div">
             <label for="acties">Acties</label>
             <div id="acties">
-
                 <?php
-
+                // Zorg ervoor dat de actie als eerst geselecteerd wordt
                 $acties = ["kijk_naar", "combineer", "neem_mee", "gebruik", "praat_met"];
                 foreach ($acties as $actie) {
-
-                    echo "<a href='?action=$actie&selected_item_id=" . ($selected_item_id ?? '') . "'>" . ucfirst($actie) . "</a><br> ";
+                    // De actie wordt nu eerst in de URL geplaatst
+                    echo "<a href='?action=$actie'>" . ucfirst($actie) . "</a><br> ";
                 }
                 ?>
-
             </div>
         </div>
+
         <div class="item_div scrollable">
             <div id="item">Items</div>
             <?php
-
-            foreach ($items as $item) {
-                echo "<div class='item'>";
-
-                echo "<a href='?selected_item_id=" . $item['item_id'] . "&action=" . ($selected_action ?? '') . "'>" . $item['item_beschrijving'] . "</a>";
-                echo "</div>";
+            // Controleer of de actie is geselecteerd
+            if (isset($_GET['action'])) {
+                // Nu de actie is geselecteerd, tonen we de items
+                foreach ($items as $item) {
+                    echo "<div class='item'>";
+                    // Hier kan het item worden gekozen nadat de actie is geselecteerd
+                    echo "<a href='?action=" . $_GET['action'] . "&selected_item_id=" . $item['item_id'] . "'>" . $item['item_beschrijving'] . "</a>";
+                    echo "</div>";
+                }
+            } else {
+                echo "<p>Selecteer eerst een actie.</p>";
             }
             ?>
         </div>
 
         <div class="npcs_div">
             <label for="npcs">NPC's</label>
-            <div id="npcs"><?php include_once __DIR__ . '/kamers/views/npc.view.php' ?></div>
+            <div id="npcs"><?php include_once __DIR__ . '/kamers/views/npc.view.php' ?>
+
+
+            </div>
         </div>
     </div>
-
 </body>
 
 </html>
