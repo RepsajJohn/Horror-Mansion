@@ -93,10 +93,8 @@
                 <label for="npcs">NPC's</label>
                 <div id="npcs"><?php echo "<a href='{$databaseLinks["npcs"]}'>{$databaseLinks["npcs"]}</a>"; ?></div>
             </div>
-        </div>    <?php
-        echo "<pre>";
-        print_r($_SESSION);
-        echo "</pre>";
+        </div>
+        <?php var_dump('current_location', $_SESSION['current_location']); ?>
         ?>
     </div>
 

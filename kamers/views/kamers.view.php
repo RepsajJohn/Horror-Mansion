@@ -71,4 +71,9 @@
     <a href="verplaatsing?kamer=11">Ga naar kamer 11</a>
     <a href="verplaatsing?kamer=12">Ga naar kamer 12</a>
     <a href="verplaatsing?kamer=14">Ga naar kamer 14</a>
+    <a href="verplaatsing?kamer=16">Ga naar kamer 16</a>
+<?php endif; ?>
+
+<?php if ($_SESSION["current_location"] == 16): ?>
+    <h3>Je bent ontsnapt!</h3>
 <?php endif; ?>

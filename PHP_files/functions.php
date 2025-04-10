@@ -19,8 +19,6 @@ try {
 
 <?php
 
-
-
 function acties()
 {
 
@@ -40,15 +38,8 @@ function acties()
     $praat_met = '<a href="actie?actie=praat_met">praat met</a><br>';
     echo $praat_met;
 }
-?>
 
 
-
-
-
-
-
-<?php
 function dialoog()
 {
     include 'kamers/index.php';
