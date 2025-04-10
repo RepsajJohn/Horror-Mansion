@@ -81,10 +81,7 @@
             </div>
         </div>
 
-        <div class="hand_div">
-            <label for="hand">Hand</label>
-            <div id="hand"></div>
-        </div>
+
 
         <div class="rugzak_div">
             <label for="rugzak">Rugzak</label>
