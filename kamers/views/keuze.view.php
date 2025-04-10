@@ -1,1 +1,1 @@
-<a href="?link=keuze"><?= $keuze["keuze_nummer"] ?></a>
+<a href="?link=keuze"><?= $keuze["kamer_nummer"] ?></a>
