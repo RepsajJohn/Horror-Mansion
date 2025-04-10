@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh
+}
+
+label {
+    display: block;
+    margin-bottom: 2px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+.rugzak {
+    background-color: white;
+    height: 100px;
+    width: 800px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+
+}
+
+textarea {
+    resize: none;
+    background-color: rgb(220, 220, 220);
+}
+
+.dialoog_bovenbalk {
+    position: relative;
+    display: flex;
+    justify-content: right;
+    align-items: flex-start;
+}
+
+.dialoog_div {
+    position: relative;
+    display: flex;
+    justify-content: right;
+    align-items: flex-start;
+    background-color: rgb(103, 42, 42);
+    padding: 10px;
+    text-align: center;
+}
+
+.container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+}
+
+.eerste_3divs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    background-color: rgb(103, 42, 42);
+}
+
+.laatste_3divs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    background-color: rgb(103, 42, 42);
+    padding-bottom: 24px;
+}
+
+.dialoog_bovenbalk {
+    background-color: rgb(135, 101, 101);
+    height: 100px;
+    width: 50%;
+}
+
+.navigatie_div {
+    background-color: white;
+    height: 100px;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.hand_div {
+    background-color: white;
+    height: 100px;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.rugzak_div {
+    background-color: white;
+    height: 100px;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.acties_div {
+    background-color: white;
+    height: 100px;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.item_div {
+    background-color: white;
+    height: 100px;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.npcs_div {
+    background-color: white;
+    height: 100px;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+}
