@@ -60,7 +60,12 @@
                                     unset($items[$key]);
                                 }
                             } elseif ($action === 'gebruik') {
-                                echo "Je gebruikt: " . $item['item_beschrijving'] . "<br>";
+                                echo "Je  kunt " . $item['item_beschrijving'] . "pas gebruiken wanneer je hem in je rugzak hebt " . "<br>";
+                            } elseif ($action === 'praat_met') {
+                                // Hier kun je de dialoog met de NPC tonen
+                                echo "Je praat met: " . $item['item_beschrijving'] . "volgens mij ben je gek aan het worden want items kunnen niks zeggen" . "<br>";
+                            } else {
+                                echo "Ongeldige actie.<br>";
                             }
                             echo "</div>";
                         }
@@ -72,16 +77,7 @@
         <div>
         </div>
     </div>
-    <div class="keuze_div">
-        <label for="keuze">Keuze</label>
-        <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
-        </div>
-        <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
-        </div>
-        <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
-        </div>
-        <div id="keuze"><?php include_once __DIR__ . "/kamers/views/keuze.view.php" ?></div>
-    </div>
+
     </div>
 
     <div class="eerste_3divs">
