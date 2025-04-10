@@ -16,7 +16,7 @@
     $databaseLinks = [
         "dialoog" => "https://example.com/dialoog1",
         "navigatie" => "https://example.com/nav1",
-        "hand" => "https://example.com/hand1",
+        "terug" => "https://example.com/terug1",
         "rugzak" => "https://example.com/rugzak1",
         "acties" => "https://example.com/actie1",
         "item" => "https://example.com/item1",
@@ -70,9 +70,9 @@
                 </div>
             </div>
 
-            <div class="hand_div">
-                <label for="hand">Hand</label>
-                <div id="hand"><?php echo "<a href='{$databaseLinks["hand"]}'>{$databaseLinks["hand"]}</a>"; ?>
+            <div class="terug_div">
+                <label for="terug">Terug</label>
+                <div id="terug"><?php echo "<a href='{$databaseLinks["terug"]}'>{$databaseLinks["terug"]}</a>"; ?>
                 </div>
             </div>
 
