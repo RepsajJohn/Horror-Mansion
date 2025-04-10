@@ -72,6 +72,17 @@
         <div>
         </div>
     </div>
+    <div class="keuze_div">
+        <label for="keuze">Keuze</label>
+        <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
+        </div>
+        <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
+        </div>
+        <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
+        </div>
+        <div id="keuze"><?php include_once __DIR__ . "/kamers/views/keuze.view.php" ?></div>
+    </div>
+    </div>
 
     <div class="eerste_3divs">
         <div class="navigatie_div">
