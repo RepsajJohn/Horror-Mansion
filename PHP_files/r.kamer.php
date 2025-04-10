@@ -40,7 +40,6 @@
 
 
     include 'functions.php';
-    echo dialoog();
 
     $sql1 = "SELECT * FROM dialoog WHERE dialoog_nummer = $getal";
     $result1 = $conn->prepare($sql1);

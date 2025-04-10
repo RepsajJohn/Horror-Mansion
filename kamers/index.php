@@ -1,6 +1,5 @@
 <?php
 
-
 require_once __DIR__ . '/../PHP_files/functions.php';
 
 
@@ -14,11 +13,7 @@ $statement->execute(['current_location' => $_SESSION['current_location']]);
 $kamer = $statement->fetch(PDO::FETCH_ASSOC);
 
 
-<<<<<<< HEAD
 $items_sql = "SELECT item_id, item_beschrijving FROM item WHERE kamer_nummer = :current_location";
-=======
-$items_sql = "SELECT item_beschrijving FROM item WHERE kamer_nummer = :current_location";
->>>>>>> main
 $stmt = $conn->prepare($items_sql);
 $stmt->execute(['current_location' => $_SESSION['current_location']]);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -36,19 +31,13 @@ $statement = $conn->prepare($npc_sql);
 $statement->execute(['current_location' => $_SESSION['current_location']]);
 $npc = $statement->fetch(PDO::FETCH_ASSOC);
 
-<<<<<<< HEAD
 $keuze_sql = "SELECT eerste_keuze FROM keuze WHERE kamer_nummer = :current_location";
 $stmt = $conn->prepare($keuze_sql);
 $stmt->execute(['current_location' => $_SESSION['current_location']]);
 $keuze = $stmt->fetch(PDO::FETCH_ASSOC);
-=======
-$keuze_sql = "SELECT eerste_keuze FROM keuze WHERE keuze_id = :current_location";
-$stmt = $conn->prepare($keuze_sql);
-$stmt->execute(['current_location' => $_SESSION['current_location']]);
-$keuze = $statement->fetch(PDO::FETCH_ASSOC);
->>>>>>> main
 
 
 
 
 require_once __DIR__ . '/../game_layout_horror_mansion.php';
+

@@ -108,14 +108,6 @@ textarea {
     padding: 10px;
     margin: 10px;
     border-radius: 3px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.acties_div::-webkit-scrollbar {
-    width: 10px;
-    height: 5px;
-
 }
 
 .item_div {
@@ -134,31 +126,4 @@ textarea {
     padding: 10px;
     margin: 10px;
     border-radius: 3px;
-}
-
-.keuze_div {
-    background-color: rgb(255, 255, 255);
-    height: 20px;
-    width: 500px;
-    text-align: center;
-    justify-content: space-evenly;
-    flex-direction: row;
-    
-}
-
-.move_keuze_div {
-    background-color: rgb(255, 255, 255);
-    position: relative;
-    display: flex;
-    justify-content: right;
-    flex-direction: row;
-}
-
-.scrollable {
-    overflow-y: auto;
-    /* Add vertical scrolling */
-    border: 1px solid #ccc;
-    /* Optional: Adds a border for better visibility */
-    padding: 10px;
-    /* Optional: Adds some padding inside the div */
 }
