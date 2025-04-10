@@ -72,17 +72,7 @@
         <div>
         </div>
     </div>
-    <div class="keuze_div">
-        <label for="keuze">Keuze</label>
-        <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
-        </div>
-        <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
-        </div>
-        <div id="keuze"><?php echo "<a href='{$databaseLinks["keuze"]}'>{$databaseLinks["keuze"]}</a>"; ?>
-        </div>
-        <div id="keuze"><?php include_once __DIR__ . "/kamers/views/keuze.view.php" ?></div>
-    </div>
-    </div>
+
 
     <div class="eerste_3divs">
         <div class="navigatie_div">
@@ -102,12 +92,13 @@
                 echo "<div id='rugzak'>";
                 if (!empty($_SESSION['rugzak'])) {
                     foreach ($_SESSION['rugzak'] as $rugzakItem) {
-                        echo "<p>" . htmlspecialchars($rugzakItem['item_beschrijving']) . "</p>";
+                        echo "<a href='#'>" . htmlspecialchars($rugzakItem['item_beschrijving']) . "</a>" . "<br>";
                     }
                 } else {
                     echo "<p>De rugzak is leeg.</p>";
                 }
                 echo "</div>";
+
                 ?>
             </div>
         </div>
