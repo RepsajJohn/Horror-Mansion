@@ -81,7 +81,7 @@
         <div class="laatste_3divs">
             <div class="acties_div">
                 <label for="acties">Acties</label>
-                <div id="acties"><?php echo "<a href='{$databaseLinks["acties"]}'>{$databaseLinks["acties"]}</a>"; ?></div>
+                <div id="acties"><?php acties(); ?></div>
             </div>
 
             <div class="item_div">
@@ -93,8 +93,13 @@
                 <label for="npcs">NPC's</label>
                 <div id="npcs"><?php echo "<a href='{$databaseLinks["npcs"]}'>{$databaseLinks["npcs"]}</a>"; ?></div>
             </div>
-        </div>
+        </div>    <?php
+        echo "<pre>";
+        print_r($_SESSION);
+        echo "</pre>";
+        ?>
     </div>
+
     </div>
 </body>
 
