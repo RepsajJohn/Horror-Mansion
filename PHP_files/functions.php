@@ -24,19 +24,19 @@ function acties()
 {
 
 
-    $kijknaar = '<a href="?link=kijk_naar">kijk naar</a><br>';
+    $kijknaar = '<a href="?action=kijk_naar">kijk naar</a><br>';
     echo $kijknaar;
 
-    $combineer = '<a href="?link=combineer">combineer ..... met .....</a><br>';
+    $combineer = '<a href="?action=combineer">combineer ..... met .....</a><br>';
     echo $combineer;
 
-    $neem_mee = '<a href="?link=neem_mee">neem mee</a><br>';
+    $neem_mee = '<a href="?action=neem_mee">neem mee</a><br>';
     echo $neem_mee;
 
-    $gebruik = '<a href="?link=gebruik">gebruik</a><br>';
+    $gebruik = '<a href="?action=gebruik">gebruik</a><br>';
     echo $gebruik;
 
-    $praat_met = '<a href="?link=praat_met">praat met</a><br>';
+    $praat_met = '<a href="?action=praat_met">praat met</a><br>';
     echo $praat_met;
 }
 ?>

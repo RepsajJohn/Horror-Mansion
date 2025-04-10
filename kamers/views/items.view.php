@@ -1,6 +1,8 @@
 <div class="item">
-    <a href="?link=item"><?= $item['item_beschrijving'] ?></a>
+    <a href="?action=kijk_naar&item_id=<?= $item['item_id'] ?>"><?= $item['item_beschrijving'] ?></a>
+
 </div>
+
 <?php
 if (isset($_GET['link'])) {
     $link = $_GET['link'];
