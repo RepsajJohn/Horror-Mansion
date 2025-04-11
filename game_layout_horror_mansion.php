@@ -48,16 +48,30 @@
                                 } while ($other_item['item_id'] == $item['item_id']);
                                 echo "Je combineert: " . $item['item_beschrijving'] . " met " . $other_item['item_beschrijving'] . "<br>";
                             } elseif ($action === 'neem_mee') {
-                                // Zorg ervoor dat het item wordt meegenomen en verwijderd uit de lijst
-                                echo "Je hebt: " . $item['item_beschrijving'] . " meegenomen<br>";
+                                // Check of het item al in de rugzak zit
+                                $alInRugzak = false;
+                                if (!empty($_SESSION['rugzak'])) {
+                                    foreach ($_SESSION['rugzak'] as $r) {
+                                        if ($r['item_id'] == $item['item_id']) {
+                                            $alInRugzak = true;
+                                            break;
+                                        }
+                                    }
+                                }
 
-                                // Voeg het item toe aan de rugzak
-                                $_SESSION['rugzak'][] = $item;
+                                if ($alInRugzak) {
+                                    echo "Je hebt dit item al in je rugzak.<br>";
+                                } else {
+                                    echo "Je hebt: " . $item['item_beschrijving'] . " meegenomen<br>";
 
-                                // Verwijder het item uit de lijst van items
-                                $key = array_search($item['item_id'], array_column($items, 'item_id'));
-                                if ($key !== false) {
-                                    unset($items[$key]);
+                                    // Voeg het item toe aan de rugzak
+                                    $_SESSION['rugzak'][] = $item;
+                                }
+                                foreach ($items as $key => $available_item) {
+                                    if ($available_item['item_id'] == $item['item_id']) {
+                                        unset($items[$key]); // Verwijder het item uit de lijst
+                                        break; // Stop met zoeken zodra het item is gevonden
+                                    }
                                 }
                             } elseif ($action === 'gebruik') {
                                 // Check of er al een eerste item gekozen is
@@ -74,11 +88,7 @@
                                     echo "Je gebruikt " . $eersteItem['item_beschrijving'] . " op " . $tweedeItem['item_beschrijving'] . "<br>";
 
                                     // Voorbeeld van een specifieke combinatie
-                                    if ($eersteItem['item_beschrijving'] === 'zaklamp' && $tweedeItem['item_beschrijving'] === 'zolderluik') {
-                                        echo '<a href="verplaatsing.php?kamer=2">Ga naar kamer 2</a>';
-                                    } else {
-                                        echo "Er gebeurt niets bij deze combinatie.";
-                                    }
+
 
                                     include_once __DIR__ . '/kamers/views/versleutelde.kamers.php';
                                     // Reset de sessie voor gebruiksitems

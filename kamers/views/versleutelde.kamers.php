@@ -7,23 +7,16 @@ if ($eersteItem['item_beschrijving'] === 'oude roestige sleutel' && $tweedeItem[
 
 
 
-if ($action === 'gebruik') {
-    if ($eersteItem['item_beschrijving'] === 'breekuizer' && $tweedeItem['item_beschrijving'] === 'baby hekje') {
-        echo '<a href="verplaatsing?kamer=5">Ga naar kamer 5</a>';
-    }
+if ($eersteItem['item_beschrijving'] === 'breekuizer' && $tweedeItem['item_beschrijving'] === 'baby hekje') {
+    echo '<a href="verplaatsing?kamer=5">Ga naar kamer 5</a>';
 }
 
-if ($_SESSION["current_location"] == 6) {
-    if ($action === 'gebruik') {
-        if ($eersteItem['item_beschrijving'] === 'kaars' && $tweedeItem['item_beschrijving'] === 'deur') {
-            echo '<a href="verplaatsing?kamer=8">Ga naar kamer 8</a>';
-        }
-    }
+
+if ($eersteItem['item_beschrijving'] === 'kaars' && $tweedeItem['item_beschrijving'] === 'deur') {
+    echo '<a href="verplaatsing?kamer=8">Ga naar kamer 8</a>';
 }
-if ($_SESSION["current_location"] == 15) {
-    if ($action === 'gebruik') {
-        if ($eersteItem['item_beschrijving'] === 'main sleutel' && $tweedeItem['item_beschrijving'] === 'deur') {
-            echo '<a href="verplaatsing?kamer=16">Ga naar kamer 16</a>';
-        }
-    }
+
+
+if ($eersteItem['item_beschrijving'] === 'main sleutel' && $tweedeItem['item_beschrijving'] === 'deur') {
+    echo '<a href="verplaatsing?kamer=16">Ga naar kamer 16</a>';
 }
