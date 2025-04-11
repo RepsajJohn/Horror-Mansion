@@ -1,17 +1,10 @@
 <h3><?= $kamer['kamer_naam'] ?></h3>
 
-
 <?php
-if ($_SESSION["current_location"] == 1): ?>
-    <a href="verplaatsing?kamer=2">Ga naar kamer 2</a>
-<?php endif; ?>
-
-<?php if ($_SESSION["current_location"] == 2): ?>
+if ($_SESSION["current_location"] == 2): ?>
     <a href="verplaatsing?kamer=1">Ga naar kamer 1</a>
     <a href="verplaatsing?kamer=3">Ga naar kamer 3</a>
     <a href="verplaatsing?kamer=4">Ga naar kamer 4</a>
-    <a href="verplaatsing?kamer=5">Ga naar kamer 5</a>
-
 <?php endif; ?>
 
 <?php if ($_SESSION["current_location"] == 3): ?>
@@ -21,6 +14,7 @@ if ($_SESSION["current_location"] == 1): ?>
 <?php if ($_SESSION["current_location"] == 4): ?>
     <a href="verplaatsing?kamer=2">Ga naar kamer 2</a>
 <?php endif; ?>
+
 
 <?php if ($_SESSION["current_location"] == 5): ?>
     <?php $getal = ($_SESSION["current_location"] == 5) ?>
@@ -32,7 +26,6 @@ if ($_SESSION["current_location"] == 1): ?>
 <?php if ($_SESSION["current_location"] == 6): ?>
     <a href="verplaatsing?kamer=2">Ga naar kamer 2</a>
     <a href="verplaatsing?kamer=7">Ga naar kamer 7</a>
-    <a href="verplaatsing?kamer=8">Ga naar kamer 8</a>
 <?php endif; ?>
 
 <?php if ($_SESSION["current_location"] == 7): ?>

@@ -60,7 +60,30 @@
                                     unset($items[$key]);
                                 }
                             } elseif ($action === 'gebruik') {
-                                echo "Je  kunt " . $item['item_beschrijving'] . "pas gebruiken wanneer je hem in je rugzak hebt " . "<br>";
+                                // Check of er al een eerste item gekozen is
+                                if (!isset($_SESSION['eerste_gebruiks_item'])) {
+                                    // Bewaar eerste item in sessie
+                                    $_SESSION['eerste_gebruiks_item'] = $item;
+                                    echo "Je hebt " . $item['item_beschrijving'] . " geselecteerd om te gebruiken op een ander item.<br>";
+                                    echo "Kies nu een tweede item.";
+                                } else {
+                                    // Tweede item gekozen
+                                    $eersteItem = $_SESSION['eerste_gebruiks_item'];
+                                    $tweedeItem = $item;
+
+                                    echo "Je gebruikt " . $eersteItem['item_beschrijving'] . " op " . $tweedeItem['item_beschrijving'] . "<br>";
+
+                                    // Voorbeeld van een specifieke combinatie
+                                    if ($eersteItem['item_beschrijving'] === 'zaklamp' && $tweedeItem['item_beschrijving'] === 'zolderluik') {
+                                        echo '<a href="verplaatsing.php?kamer=2">Ga naar kamer 2</a>';
+                                    } else {
+                                        echo "Er gebeurt niets bij deze combinatie.";
+                                    }
+
+                                    include_once __DIR__ . '/kamers/views/versleutelde.kamers.php';
+                                    // Reset de sessie voor gebruiksitems
+                                    unset($_SESSION['eerste_gebruiks_item']);
+                                }
                             } elseif ($action === 'praat_met') {
                                 // Hier kun je de dialoog met de NPC tonen
                                 echo "Je praat met: " . $item['item_beschrijving'] . "volgens mij ben je gek aan het worden want items kunnen niks zeggen" . "<br>";

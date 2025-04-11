@@ -14,7 +14,7 @@ $statement->execute(['current_location' => $_SESSION['current_location']]);
 $kamer = $statement->fetch(PDO::FETCH_ASSOC);
 
 
-$items_sql = "SELECT item_id, item_beschrijving FROM item WHERE item_nummer = :current_location";
+$items_sql = "SELECT item_id, item_beschrijving FROM item WHERE kamer_nummer = :current_location";
 $stmt = $conn->prepare($items_sql);
 $stmt->execute(['current_location' => $_SESSION['current_location']]);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -24,7 +24,7 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-$dialoog_sql = "SELECT beschrijving FROM dialoog WHERE dialoog_nummer = :current_location";
+$dialoog_sql = "SELECT feedback FROM dialoog WHERE kamer_id = :current_location";
 $statement = $conn->prepare($dialoog_sql);
 $statement->execute(['current_location' => $_SESSION['current_location']]);
 $dialoog = $statement->fetch(PDO::FETCH_ASSOC);
