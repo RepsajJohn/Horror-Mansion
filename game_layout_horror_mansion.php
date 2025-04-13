@@ -13,7 +13,7 @@
     <div class="dialoog_div">
         <div class="dialoog_div_2">
             <label for="dialoog_div_2">Dialoog</label>
-            <?php session_start();
+            <?php
             include_once __DIR__ . '/kamers/views/dialoog.view.php';
 
 
@@ -91,15 +91,25 @@
                         } else {
                             $eersteItem = $_SESSION['eerste_gebruiks_item'];
                             echo "Je gebruikt " . $eersteItem['item_beschrijving'] . " op " . $item['item_beschrijving'] . "<br>";
-                            include_once __DIR__ . '/kamers/views/versleutelde.kamers.php';
                             unset($_SESSION['eerste_gebruiks_item']);
+
+                            if ($eersteItem['item_beschrijving'] === 'oude roestige sleutel' && $item['item_beschrijving'] === 'zolderluik') {
+                                echo '<a href="verplaatsing?kamer=2">Ga naar kamer 2</a>';
+                            } elseif ($eersteItem['item_beschrijving'] === 'breekuizer' && $item['item_beschrijving'] === 'baby hekje') {
+                                echo '<a href="verplaatsing?kamer=5">Ga naar kamer 5</a>';
+                            } elseif ($eersteItem['item_beschrijving'] === 'kaars' && $item['item_beschrijving'] === 'deur') {
+                                echo '<a href="verplaatsing?kamer=8">Ga naar kamer 8</a>';
+                            } elseif ($eersteItem['item_beschrijving'] === 'main sleutel' && $item['item_beschrijving'] === 'deur') {
+                                echo '<a href="verplaatsing?kamer=16">Ga naar kamer 16</a>';
+                            } else {
+                                echo '<p>Deze items kan je niet samen gebruiken.</p>';
+                            }
                         }
                         echo "<hr>";
                         break;
 
 
                     case 'praat_met':
-
                         echo "Je probeert te praten met: " . $item['item_beschrijving'] . ". Items kunnen echter niet praten.<br>";
                         echo "<hr>";
                         break;
@@ -107,6 +117,7 @@
                 $output .= "</div>";
                 return $output;
             }
+
 
 
             function actie_praat_met_npc($action, $npc)
