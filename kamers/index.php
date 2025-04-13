@@ -34,6 +34,11 @@ $statement = $conn->prepare($npc_sql);
 $statement->execute(['current_location' => $_SESSION['current_location']]);
 $npc = $statement->fetch(PDO::FETCH_ASSOC);
 
+$npc_sql = "SELECT keuze FROM npc_keuze WHERE npc_nummer = :current_location";
+$statement = $conn->prepare($npc_sql);
+$statement->execute(['current_location' => $_SESSION['current_location']]);
+$npc = $statement->fetch(PDO::FETCH_ASSOC);
+
 
 
 

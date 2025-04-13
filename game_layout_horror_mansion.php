@@ -41,12 +41,25 @@
                             if ($action === 'kijk_naar') {
                                 echo "Je kijkt naar: " . $item['item_beschrijving'] . "<br>";
                             } elseif ($action === 'combineer') {
+                                if (!isset($_SESSION['eerste_gebruiks_item'])) {
+                                    // Bewaar eerste item in sessie
+                                    $_SESSION['eerste_gebruiks_item'] = $item;
+                                    echo "Je hebt " . $item['item_beschrijving'] . " geselecteerd om te gebruiken op een ander item.<br>";
+                                    echo "Kies nu een tweede item.";
+                                } else {
+                                    // Tweede item gekozen
+                                    $eersteItem = $_SESSION['eerste_gebruiks_item'];
+                                    $tweedeItem = $item;
 
-                                $other_item = null;
-                                do {
-                                    $other_item = $items[array_rand($items)];
-                                } while ($other_item['item_id'] == $item['item_id']);
-                                echo "Je combineert: " . $item['item_beschrijving'] . " met " . $other_item['item_beschrijving'] . "<br>";
+                                    echo "Je gebruikt " . $eersteItem['item_beschrijving'] . " op " . $tweedeItem['item_beschrijving'] . "<br>";
+
+                                    // Voorbeeld van een specifieke combinatie
+
+
+                                    include_once __DIR__ . '/kamers/views/combinatie.vieuw.php';
+                                    // Reset de sessie voor gebruiksitems
+                                    unset($_SESSION['eerste_gebruiks_item']);
+                                }
                             } elseif ($action === 'neem_mee') {
                                 // Check of het item al in de rugzak zit
                                 $alInRugzak = false;
