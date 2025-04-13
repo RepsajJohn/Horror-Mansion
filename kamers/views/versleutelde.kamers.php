@@ -12,6 +12,4 @@ if ($eersteItem['item_beschrijving'] === 'kaars' && $tweedeItem['item_beschrijvi
 }
 if ($eersteItem['item_beschrijving'] === 'main sleutel' && $tweedeItem['item_beschrijving'] === 'deur') {
     echo '<a href="verplaatsing?kamer=16">Ga naar kamer 16</a>';
-} else {
-    echo "Deze items kunne niet samen gebruikt worden .<br>";
 }
