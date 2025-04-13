@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,151 +9,147 @@
 </head>
 
 <body>
-    <div class="dialoog_bovenbalk">
-    </div>
-
+    <div class="dialoog_bovenbalk"></div>
     <div class="dialoog_div">
         <div class="dialoog_div_2">
             <label for="dialoog_div_2">Dialoog</label>
-            <?php
+            <?php session_start();
             include_once __DIR__ . '/kamers/views/dialoog.view.php';
 
-            // Start de sessie om gegevens op te slaan
 
 
-            // Sla de huidige actie en item-ID op in de sessie als ze zijn ingesteld
             if (isset($_GET['action'])) {
+                $actionData = [
+                    'action' => $_GET['action']
+                ];
+
                 if (isset($_GET['selected_item_id'])) {
-                    $_SESSION['actions'][] = [
-                        'action' => $_GET['action'],
-                        'item_id' => $_GET['selected_item_id']
-                    ];
+                    $actionData['type'] = 'item';
+                    $actionData['id'] = $_GET['selected_item_id'];
                 } elseif (isset($_GET['selected_npc_id'])) {
-                    $_SESSION['actions'][] = [
-                        'action' => $_GET['action'],
-                        'npc_id' => $_GET['selected_npc_id']
-                    ];
+                    $actionData['type'] = 'npc';
+                    $actionData['id'] = $_GET['selected_npc_id'];
                 }
+
+                $_SESSION['actions'][] = $actionData;
             }
 
 
-            // Toon acties vanuit de sessie
+
+
+            // Functie om acties op items af te handelen
+            function actie_met_items($action, $item)
+            {
+                $output = "<div>";
+                switch ($action) {
+                    case 'kijk_naar':
+                        echo "Je kijkt naar: " . $item['item_beschrijving'] . "<br>";
+                        echo "<hr>";
+                        break;
+
+
+                    case 'combineer':
+                        if (!isset($_SESSION['eerste_gebruiks_item'])) {
+                            $_SESSION['eerste_gebruiks_item'] = $item;
+                            echo "Je combineert " . $item['item_beschrijving'] . " met ...<br>";
+                            echo "Kies nu een tweede item.";
+                        } else {
+                            $eersteItem = $_SESSION['eerste_gebruiks_item'];
+                            echo "Je combineert " . $eersteItem['item_beschrijving'] . " met " . $item['item_beschrijving'] . "<br>";
+                            include_once __DIR__ . '/kamers/views/combinatie.view.php';
+                            unset($_SESSION['eerste_gebruiks_item']);
+                        }
+                        echo "<hr>";
+                        break;
+
+
+                    case 'neem_mee':
+                        $alInRugzak = false;
+                        if (!empty($_SESSION['rugzak'])) {
+                            foreach ($_SESSION['rugzak'] as $r) {
+                                if ($r['item_id'] === $item['item_id']) {
+                                    $alInRugzak = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if ($alInRugzak) {
+                            echo "Je hebt dit item al in je rugzak.<br>";
+                        } else {
+                            echo "Je hebt: " . $item['item_beschrijving'] . " meegenomen<br>";
+                            $_SESSION['rugzak'][] = $item;
+                        }
+                        echo "<hr>";
+                        break;
+
+
+                    case 'gebruik':
+                        if (!isset($_SESSION['eerste_gebruiks_item'])) {
+                            $_SESSION['eerste_gebruiks_item'] = $item;
+                            echo "Je hebt " . $item['item_beschrijving'] . " geselecteerd om te gebruiken op een ander item.<br>";
+                            echo "Kies nu een tweede item.";
+                        } else {
+                            $eersteItem = $_SESSION['eerste_gebruiks_item'];
+                            echo "Je gebruikt " . $eersteItem['item_beschrijving'] . " op " . $item['item_beschrijving'] . "<br>";
+                            include_once __DIR__ . '/kamers/views/versleutelde.kamers.php';
+                            unset($_SESSION['eerste_gebruiks_item']);
+                        }
+                        echo "<hr>";
+                        break;
+
+
+                    case 'praat_met':
+
+                        echo "Je probeert te praten met: " . $item['item_beschrijving'] . ". Items kunnen echter niet praten.<br>";
+                        echo "<hr>";
+                        break;
+                }
+                $output .= "</div>";
+                return $output;
+            }
+
+
+            function actie_praat_met_npc($action, $npc)
+            {
+                $output = "<div>";
+                switch ($action) {
+
+                    case 'praat_met':
+                        global $conn;
+                        $randomDialoog = getRandomDialoogVanNPC($conn, $npc['npc_id']);
+                        echo "Je praat met: " . htmlspecialchars($npc['npc_naam']) . "<br>";
+                        echo "<em>\"" . htmlspecialchars($randomDialoog) . "\"</em><br>";
+                        echo "<hr>";
+                        break;
+                }
+                $output .= "</div>";
+                return $output;
+            }
+
+
             if (!empty($_SESSION['actions'])) {
                 foreach ($_SESSION['actions'] as $saved_action) {
                     $action = $saved_action['action'];
 
-                    // Als actie met item
-                    if (isset($saved_action['item_id'])) {
-                        $selected_item_id = $saved_action['item_id'];
-
-
-
+                    if (isset($saved_action['type']) && $saved_action['type'] === 'item') {
+                        $selected_item_id = $saved_action['id'];
+                        // Zoek het item in de items-array
                         foreach ($items as $item) {
                             if ($item['item_id'] == $selected_item_id) {
-                                echo "<div>";
-                                if ($action === 'kijk_naar') {
-                                    echo "Je kijkt naar: " . $item['item_beschrijving'] . "<br>";
-                                } elseif ($action === 'combineer') {
-                                    if (!isset($_SESSION['eerste_gebruiks_item'])) {
-                                        // Bewaar eerste item in sessie
-                                        $_SESSION['eerste_gebruiks_item'] = $item;
-                                        echo "Je combineert " . $item['item_beschrijving'] . " met .<br>";
-                                        echo "Kies nu een tweede item.";
-                                    } else {
-                                        // Tweede item gekozen
-                                        $eersteItem = $_SESSION['eerste_gebruiks_item'];
-                                        $tweedeItem = $item;
-
-                                        echo "Je combineert" . $eersteItem['item_beschrijving'] . " met " . $tweedeItem['item_beschrijving'] . "<br>";
-
-                                        // Voorbeeld van een specifieke combinatie
-
-
-                                        include_once __DIR__ . '/kamers/views/combinatie.vieuw.php';
-                                        // Reset de sessie voor gebruiksitems
-                                        unset($_SESSION['eerste_gebruiks_item']);
-                                    }
-                                } elseif ($action === 'neem_mee') {
-                                    // Check of het item al in de rugzak zit
-                                    $alInRugzak = false;
-                                    if (!empty($_SESSION['rugzak'])) {
-                                        foreach ($_SESSION['rugzak'] as $r) {
-                                            if ($r['item_id'] == $item['item_id']) {
-                                                $alInRugzak = true;
-                                                break;
-                                            }
-                                        }
-                                    }
-
-                                    if ($alInRugzak) {
-                                        echo "Je hebt dit item al in je rugzak.<br>";
-                                    } else {
-                                        echo "Je hebt: " . $item['item_beschrijving'] . " meegenomen<br>";
-
-                                        // Voeg het item toe aan de rugzak
-                                        $_SESSION['rugzak'][] = $item;
-                                    }
-                                    foreach ($items as $key => $available_item) {
-                                        if ($available_item['item_id'] == $item['item_id']) {
-                                            unset($items[$key]); // Verwijder het item uit de lijst
-                                            break; // Stop met zoeken zodra het item is gevonden
-                                        }
-                                    }
-                                } elseif ($action === 'gebruik') {
-                                    // Check of er al een eerste item gekozen is
-                                    if (!isset($_SESSION['eerste_gebruiks_item'])) {
-                                        // Bewaar eerste item in sessie
-                                        $_SESSION['eerste_gebruiks_item'] = $item;
-                                        echo "Je hebt " . $item['item_beschrijving'] . " geselecteerd om te gebruiken op een ander item.<br>";
-                                        echo "Kies nu een tweede item.";
-                                    } else {
-                                        // Tweede item gekozen
-                                        $eersteItem = $_SESSION['eerste_gebruiks_item'];
-                                        $tweedeItem = $item;
-
-                                        echo "Je gebruikt " . $eersteItem['item_beschrijving'] . " op " . $tweedeItem['item_beschrijving'] . "<br>";
-
-                                        // Voorbeeld van een specifieke combinatie
-
-
-                                        include_once __DIR__ . '/kamers/views/versleutelde.kamers.php';
-                                        // Reset de sessie voor gebruiksitems
-                                        unset($_SESSION['eerste_gebruiks_item']);
-                                    }
-                                } elseif ($action === 'praat_met') {
-                                    // Hier kun je de dialoog met de NPC tonen
-                                    echo "Je praat met: " . $item['item_beschrijving'] . "volgens mij ben je gek aan het worden want items kunnen niks zeggen" . "<br>";
-                                } else {
-                                    echo "Ongeldige actie.<br>";
-                                }
-                                echo "</div>";
+                                echo actie_met_items($action, $item);
                             }
                         }
-                    }
-                }
-            }
-            if (isset($saved_action['npc_id'])) {
-                $npc_id = $saved_action['npc_id'];
-
-                foreach ($npcs as $npc) {
-                    if ($npc['npc_id'] == $npc_id) {
-                        echo "<div>";
-                        if ($action === 'praat_met') {
-                            echo "Je praat met: " . $npc['npc_naam'] . "<br>";
-                            echo "<p>" . $npc['npc_dialoog'] . "</p>";
-                        } else {
-                            echo "Deze actie werkt niet op een NPC.<br>";
+                    } elseif (isset($saved_action['type']) && $saved_action['type'] === 'npc') {
+                        $npc_id = $saved_action['id'];
+                        // Zoek de NPC in de npcs-array
+                        if ($npc['npc_id'] == $npc_id) {
+                            echo actie_praat_met_npc($action, $npc);
                         }
-                        echo "</div>";
                     }
                 }
             }
             ?>
         </div>
-        <div>
-        </div>
-    </div>
-
     </div>
 
     <div class="eerste_3divs">
@@ -165,13 +160,10 @@
             </div>
         </div>
 
-
-
         <div class="rugzak_div">
             <label for="rugzak">Rugzak</label>
             <div id="rugzak">
                 <?php
-                // Toon de inhoud van de rugzak
                 echo "<div id='rugzak'>";
                 if (!empty($_SESSION['rugzak'])) {
                     foreach ($_SESSION['rugzak'] as $rugzakItem) {
@@ -191,11 +183,9 @@
             <label for="acties">Acties</label>
             <div id="acties">
                 <?php
-                // Zorg ervoor dat de actie als eerst geselecteerd wordt
                 $acties = ["kijk_naar", "combineer", "neem_mee", "gebruik", "praat_met"];
                 foreach ($acties as $actie) {
-                    // De actie wordt nu eerst in de URL geplaatst
-                    echo "<a href='?action=$actie'>" . ucfirst($actie) . "</a><br> ";
+                    echo "<a href='?action=$actie'>" . ucfirst($actie) . "</a><br>";
                 }
                 ?>
             </div>
@@ -204,12 +194,9 @@
         <div class="item_div scrollable">
             <div id="item">Items</div>
             <?php
-            // Controleer of de actie is geselecteerd
             if (isset($_GET['action'])) {
-                // Nu de actie is geselecteerd, tonen we de items
                 foreach ($items as $item) {
                     echo "<div class='item'>";
-                    // Hier kan het item worden gekozen nadat de actie is geselecteerd
                     echo "<a href='?action=" . $_GET['action'] . "&selected_item_id=" . $item['item_id'] . "'>" . $item['item_beschrijving'] . "</a>";
                     echo "</div>";
                 }
@@ -221,11 +208,13 @@
 
         <div class="npcs_div">
             <label for="npcs">NPC's</label>
-            <div id="npcs"><?php include_once __DIR__ . '/kamers/views/npc.view.php' ?>
-
-
+            <div id="npcs">
+                <?php
+                include_once __DIR__ . '/kamers/views/npc.view.php';
+                ?>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

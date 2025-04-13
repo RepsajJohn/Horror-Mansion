@@ -29,10 +29,21 @@ $statement = $conn->prepare($dialoog_sql);
 $statement->execute(['current_location' => $_SESSION['current_location']]);
 $dialoog = $statement->fetch(PDO::FETCH_ASSOC);
 
-$npc_sql = "SELECT npc_naam FROM npc WHERE npc_id = :current_location";
+$npc_sql = "SELECT npc_naam , npc_id FROM npc WHERE npc_id = :current_location";
 $statement = $conn->prepare($npc_sql);
 $statement->execute(['current_location' => $_SESSION['current_location']]);
 $npc = $statement->fetch(PDO::FETCH_ASSOC);
+
+function getRandomDialoogVanNPC($conn, $npc_id)
+{
+    $sql = "SELECT keuze FROM npc_keuze WHERE npc_nummer = :npc_id ORDER BY RAND() LIMIT 1";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['npc_id' => $npc_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $result ? $result['keuze'] : "Deze NPC heeft niets te zeggen...";
+}
+
 
 
 
