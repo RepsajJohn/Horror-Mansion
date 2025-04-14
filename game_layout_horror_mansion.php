@@ -89,10 +89,20 @@
                         } else {
                             echo "Je hebt: " . $item['item_beschrijving'] . " meegenomen<br>";
                             $_SESSION['rugzak'][] = $item;
+
+
+                            foreach ($GLOBALS['items'] as $key => $i) {
+                                if ($i['item_id'] === $item['item_id']) {
+                                    unset($GLOBALS['items'][$key]);
+                                    break;
+                                }
+                            }
+
+
+                            $GLOBALS['items'] = array_values($GLOBALS['items']);
                         }
                         echo "<hr>";
                         break;
-
 
                     case 'gebruik':
                         if (!isset($_SESSION['eerste_gebruiks_item'])) {
