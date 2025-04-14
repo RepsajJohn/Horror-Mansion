@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 14 apr 2025 om 11:46
+-- Gegenereerd op: 14 apr 2025 om 12:13
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -396,19 +396,20 @@ INSERT INTO `keuze` (`keuze_id`, `kamer_nummer`, `eerste_keuze`, `feedback`, `co
 CREATE TABLE `npc` (
   `npc_id` int(10) NOT NULL,
   `npc_naam` varchar(200) NOT NULL,
-  `npc_nummer` varchar(10) NOT NULL
+  `npc_nummer` varchar(10) NOT NULL,
+  `kamer_nummer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `npc`
 --
 
-INSERT INTO `npc` (`npc_id`, `npc_naam`, `npc_nummer`) VALUES
-(0, '', '0'),
-(1, 'sven', '1'),
-(2, 'frans', '2'),
-(3, '2 ratten ', '3'),
-(5, 'rat 3 Richard ', '5');
+INSERT INTO `npc` (`npc_id`, `npc_naam`, `npc_nummer`, `kamer_nummer`) VALUES
+(0, '', '0', 0),
+(1, 'sven', '1', 6),
+(2, 'frans', '2', 10),
+(3, '2 ratten ', '3', 14),
+(5, 'rat 3 Richard ', '5', 15);
 
 -- --------------------------------------------------------
 
@@ -542,8 +543,7 @@ ALTER TABLE `keuze`
 -- Indexen voor tabel `npc`
 --
 ALTER TABLE `npc`
-  ADD PRIMARY KEY (`npc_id`) USING BTREE,
-  ADD KEY `npc_nummer` (`npc_nummer`);
+  ADD PRIMARY KEY (`npc_id`) USING BTREE;
 
 --
 -- Indexen voor tabel `npc_keuze`
@@ -633,12 +633,6 @@ ALTER TABLE `combinatie_item`
 ALTER TABLE `item`
   ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`gecombineerde_item_nummer`) REFERENCES `combinatie_item` (`gecombineerde_item_nummer`),
   ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`gebruik_item_nummer`) REFERENCES `gebruik_items` (`gebruik_item_nummer`);
-
---
--- Beperkingen voor tabel `npc`
---
-ALTER TABLE `npc`
-  ADD CONSTRAINT `npc_ibfk_1` FOREIGN KEY (`npc_nummer`) REFERENCES `npc_keuze` (`npc_nummer`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
