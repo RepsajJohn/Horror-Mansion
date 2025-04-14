@@ -34,5 +34,4 @@ $npc = $statement->fetch(PDO::FETCH_ASSOC);
 
 
 
-s
 require_once __DIR__ . '/../game_layout_horror_mansion.php';
