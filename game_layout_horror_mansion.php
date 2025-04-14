@@ -14,7 +14,7 @@
         <div class="dialoog_div_2">
             <label for="dialoog_div_2">Dialoog</label>
             <?php
-            include_once __DIR__ . '/kamers/views/dialoog.view.php';
+
 
 
 
@@ -160,7 +160,8 @@
 
 
             if (!empty($_SESSION['actions'])) {
-                foreach ($_SESSION['actions'] as $saved_action) {
+                foreach (array_reverse($_SESSION['actions']) as $saved_action) {
+
                     $action = $saved_action['action'];
 
                     if (isset($saved_action['type']) && $saved_action['type'] === 'item') {
@@ -180,6 +181,7 @@
                     }
                 }
             }
+            include_once __DIR__ . '/kamers/views/dialoog.view.php';
             ?>
         </div>
     </div>
