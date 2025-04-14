@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 14 apr 2025 om 12:13
+-- Gegenereerd op: 14 apr 2025 om 12:20
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -262,7 +262,7 @@ INSERT INTO `item` (`item_id`, `kamer_nummer`, `item_beschrijving`, `item_img`, 
 (50, '4', 'make-up tafel', '', '0', 'gb_1', 0, 0),
 (51, '4', 'grote houten kast', '', '0', 'gb_1', 0, 0),
 (52, '4', 'kleine deur', '', '0', 'gb_0', 0, 0),
-(53, '5', 'hekje voor trap', '', '0', 'gb_0', 0, 0),
+(53, '2', 'hekje voor trap', '', '0', 'gb_0', 0, 0),
 (54, '6', 'nutteloze knop', '', '0', 'gb_0', 0, 0),
 (55, '6', 'Svens bureau', '', '0', 'gb_0', 0, 0),
 (56, '6', 'klok op de tafel', '', '0', 'gb_0', 0, 0),
