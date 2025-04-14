@@ -58,6 +58,17 @@
                             echo "Je combineert " . $eersteItem['item_beschrijving'] . " met " . $item['item_beschrijving'] . "<br>";
                             include_once __DIR__ . '/kamers/views/combinatie.view.php';
                             unset($_SESSION['eerste_gebruiks_item']);
+                            if ($eersteItem['item_beschrijving'] === 'batterijen' && $item['item_beschrijving'] === 'kleine afstandsbediening ') {
+                                echo "je hebt een opgeladen afstandsbediening gemaakt<br>";
+                            } elseif ($eersteItem['item_beschrijving'] === 'main sleutel staartje' && $item['item_beschrijving'] === 'main sleutel kopje') {
+                                echo "je hebt een main sleutel gemaakt<br>";
+                            } elseif ($eersteItem['item_beschrijving'] === 'zwevende kaars' && $item['item_beschrijving'] === 'lucifers ') {
+                                echo "je hebt een kaars gemaakt<br>";
+                            } elseif ($eersteItem['item_beschrijving'] === 'koffiebonen' && $item['item_beschrijving'] === 'flessen water') {
+                                echo "je hebt een koffie gemaakt<br>";
+                            } else {
+                                echo '<p>Deze items kan je niet combineren.</p>';
+                            }
                         }
                         echo "<hr>";
                         break;
@@ -95,9 +106,9 @@
 
                             if ($eersteItem['item_beschrijving'] === 'oude roestige sleutel' && $item['item_beschrijving'] === 'zolderluik') {
                                 echo '<a href="verplaatsing?kamer=2">Ga naar kamer 2</a>';
-                            } elseif ($eersteItem['item_beschrijving'] === 'breekuizer' && $item['item_beschrijving'] === 'baby hekje') {
+                            } elseif ($eersteItem['item_beschrijving'] === 'breekuizer' && $item['item_beschrijving'] === 'hekje voor trap') {
                                 echo '<a href="verplaatsing?kamer=5">Ga naar kamer 5</a>';
-                            } elseif ($eersteItem['item_beschrijving'] === 'kaars' && $item['item_beschrijving'] === 'deur') {
+                            } elseif ($eersteItem['item_beschrijving'] === 'zwevende kaars' && $item['item_beschrijving'] === 'deur') {
                                 echo '<a href="verplaatsing?kamer=8">Ga naar kamer 8</a>';
                             } elseif ($eersteItem['item_beschrijving'] === 'main sleutel' && $item['item_beschrijving'] === 'deur') {
                                 echo '<a href="verplaatsing?kamer=16">Ga naar kamer 16</a>';
