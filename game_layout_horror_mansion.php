@@ -248,7 +248,7 @@
                 ?>
             </div>
         </div>
-        <?php var_dump('current_location', $_SESSION['current_location']); ?>
+        
         ?>
     </div>
 
